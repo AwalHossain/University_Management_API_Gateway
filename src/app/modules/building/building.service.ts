@@ -11,7 +11,7 @@ const insertIntoDb = async (req: Request): Promise<IGenericResponse> => {
     });
     console.log(response, 'response');
 
-    return response.data;
+    return response;
 }
 
 const getAll = async (req: Request): Promise<IGenericResponse> => {
@@ -23,7 +23,7 @@ const getAll = async (req: Request): Promise<IGenericResponse> => {
             }
         });
 
-    return response.data;
+    return response;
 }
 
 const getById = async (req: Request): Promise<IGenericResponse> => {
@@ -36,7 +36,7 @@ const getById = async (req: Request): Promise<IGenericResponse> => {
         }
     });
 
-    return response.data;
+    return response;
 }
 
 const updateById = async (req: Request): Promise<IGenericResponse> => {
@@ -49,7 +49,7 @@ const updateById = async (req: Request): Promise<IGenericResponse> => {
         }
     });
 
-    return response.data;
+    return response;
 }
 
 
@@ -63,7 +63,7 @@ const deleteById = async (req: Request): Promise<IGenericResponse> => {
         }
     });
 
-    return response.data;
+    return response;
 }
 
 
