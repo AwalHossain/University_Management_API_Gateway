@@ -29,6 +29,11 @@ export default {
         url: envVars.REDIS_URL,
         expires_in: envVars.REDIS_EXPIRES_IN
     },
+    cloudinary: {
+        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+        api_key: process.env.CLOUDINARY_API_KEY,
+        api_secret: process.env.CLOUDINARY_API_SECRET
+    },
     authServiceUrl: envVars.AUTH_SERVICE_URL,
     coreServiceUrl: envVars.CORE_SERVICE_URL
 };
