@@ -9,7 +9,6 @@ const insertIntoDb = async (req: Request): Promise<IGenericResponse> => {
             'Authorization': req.headers.authorization
         }
     });
-    console.log(response, 'response');
 
     return response.data;
 }
@@ -73,5 +72,4 @@ export const AcademicFacultyService = {
     updateById,
     getById,
     deleteById
-
 }
