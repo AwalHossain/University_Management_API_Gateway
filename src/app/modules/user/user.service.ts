@@ -41,7 +41,6 @@ const createStudent = async (req: Request) => {
         }
     });
 
-    console.log(response, 'response');
     return response;
 }
 

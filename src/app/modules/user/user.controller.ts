@@ -1,16 +1,19 @@
 import { NextFunction, Request, Response } from 'express';
+import sendResponse from '../../../shared/response';
 import { UserService } from './user.service';
 
 
 const createStudent = async (req: Request, res: Response, next: NextFunction) => {
     try {
-
-        const file = req.file;
-        const result = UserService.createStudent(req);
-    } catch (err) {
-        next(err);
+        req.body = JSON.parse(req.body.data);
+        const result = await UserService.createStudent(req);
+        sendResponse(res, result);
     }
-}
+    catch (error) {
+        next(error)
+    }
+};
+
 
 
 export const UserController = {
