@@ -9,7 +9,7 @@ const createStudent = async (req: Request) => {
     const uploadImage = await uploadCloudinary(file);
 
     if (uploadImage) {
-        req.body.profileImage = uploadImage.secure_url;
+        req.body.student.profileImage = uploadImage.secure_url;
     }
 
     const { academicFaculty, academicDepartment, academicSemester } = req.body.student;
