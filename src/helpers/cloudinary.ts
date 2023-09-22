@@ -19,20 +19,17 @@ cloudinary.config(
 //upload image to cloudinary
 
 const uploadCloudinary = async (file: any) => {
-    const uploadImage = await cloudinary.uploader.upload(file.path, {
-        folder: 'a2b',
-        use_filename: true
-    }, (err: any, result: any) => {
-        fs.unlinkSync(file.path);
-        if (err) {
-            console.log(err);
-        } else {
-            console.log(result);
-        }
+    try {
+        const uploadImage = await cloudinary.uploader.upload(file.path, {
+            folder: 'a2b',
+            use_filename: true
+        });
+        fs.unlinkSync(file.path); // Delete the file after the upload
+        return uploadImage;
+    } catch (err) {
+        console.log(err);
+        throw err;
     }
-
-    );
-    return uploadImage;
-}
+};
 
 export default uploadCloudinary;
