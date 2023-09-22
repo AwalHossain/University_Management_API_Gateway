@@ -14,8 +14,18 @@ const createStudent = async (req: Request, res: Response, next: NextFunction) =>
     }
 };
 
-
+const createFaculty = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        req.body = JSON.parse(req.body.data);
+        const result = await UserService.createFaculty(req);
+        sendResponse(res, result);
+    }
+    catch (error) {
+        next(error)
+    }
+};
 
 export const UserController = {
-    createStudent
+    createStudent,
+    createFaculty
 }

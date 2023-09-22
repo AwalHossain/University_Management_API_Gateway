@@ -12,6 +12,12 @@ router.post(
     auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
     UserController.createStudent
 );
+router.post(
+    '/create-faculty',
+    uploadMiddleware,
+    auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+    UserController.createFaculty
+);
 
 
 export const userRoutes = router;

@@ -26,7 +26,7 @@ const moduleRoutes = [
     routes: BuildingRoutes
   },
   {
-    path: '/students',
+    path: '/users',
     routes: userRoutes
   },
   {
