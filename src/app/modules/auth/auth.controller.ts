@@ -56,9 +56,22 @@ const refreshToken = async (req: Request, res: Response, next: NextFunction) => 
     }
 }
 
+const changePassword = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const result = await AuthenticationService.refreshToken(req);
+
+        sendResponse(res, result)
+
+    } catch (err) {
+        next(err)
+    }
+
+}
+
 
 export const AuthenticationController = {
     loginUser,
-    refreshToken
+    refreshToken,
+    changePassword
 }
 

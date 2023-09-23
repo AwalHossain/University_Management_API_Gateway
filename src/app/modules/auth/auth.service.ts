@@ -22,7 +22,20 @@ const refreshToken = async (req: Request) => {
 }
 
 
+const changePassword = async (req: Request) => {
+
+    const response: IGenericResponse = await AuthService.post('/auth/change-password', req.body, {
+        headers: {
+            cookie: `refreshToken=${refreshToken}`
+        }
+    });
+
+
+}
+
+
 export const AuthenticationService = {
     loginUser,
-    refreshToken
+    refreshToken,
+    changePassword
 }
