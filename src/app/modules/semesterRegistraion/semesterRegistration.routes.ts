@@ -16,17 +16,21 @@ router.post(
     validateRequest(SemesterRegistrationValidation.create),
     SemesterRegistrationController.insertIntoDB
 );
-// router.get(
-//     '/',
-//     BuildingController.getAll
-// );
+router.get(
+    '/',
+    SemesterRegistrationController.getAll
+);
 
-// router.patch(
-//     '/:id',
-//     auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
-//     validateRequest(BuildingValidation.update),
-//     BuildingController.updateById
-// );
+router.get('/:id',
+    SemesterRegistrationController.getById)
+
+router.patch('/:id',
+    validateRequest(SemesterRegistrationValidation.update),
+    SemesterRegistrationController.updateById)
+
+router.delete('/:id',
+    SemesterRegistrationController.deleteById)
+
 
 
 // router.get(
