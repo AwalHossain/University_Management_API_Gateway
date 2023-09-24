@@ -75,6 +75,53 @@ const deleteById = async (req: Request, id: string) => {
 
 }
 
+const startMyRegistraion = async (req: Request) => {
+
+    console.log(req.headers.authorization, 'checking authorization');
+
+    const response: IGenericResponse = await CoreService.post('semester-registration/start-my-registration', req.body, {
+        headers: {
+            'Authorization': req.headers.authorization
+        }
+    });
+    return response;
+
+}
+
+
+const enrollCourse = async (req: Request) => {
+
+    const response: IGenericResponse = await CoreService.post('semester-registration/enroll-course', req.body, {
+        headers: {
+            'Authorization': req.headers.authorization
+        }
+    });
+    return response;
+
+}
+
+
+const withdrawCourse = async (req: Request) => {
+
+    const response: IGenericResponse = await CoreService.post('semester-registration/withdraw-course', req.body, {
+        headers: {
+            'Authorization': req.headers.authorization
+        }
+    });
+    return response;
+
+}
+
+
+const confirmMyRegistration = async (req: Request) => {
+    const response: IGenericResponse = await CoreService.post('semester-registration/withdraw-course', req.body, {
+        headers: {
+            'Authorization': req.headers.authorization
+        }
+    });
+    return response;
+
+}
 
 
 
@@ -83,5 +130,9 @@ export const SemesterRegistrationService = {
     getAll,
     getById,
     updateById,
-    deleteById
+    deleteById,
+    startMyRegistraion,
+    enrollCourse,
+    withdrawCourse,
+    confirmMyRegistration
 }

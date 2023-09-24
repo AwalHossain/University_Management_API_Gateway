@@ -68,10 +68,9 @@ const deleteById = async (req: Request, res: Response, next: NextFunction) => {
 
 
 const startMyRegistraion = async (req: Request, res: Response, next: NextFunction) => {
-    const user = (req as any).user;
-
     try {
-
+        const result = await SemesterRegistrationService.startMyRegistraion(req);
+        sendResponse(res, result)
     } catch (err) {
         next(err)
     }
@@ -82,18 +81,9 @@ const startMyRegistraion = async (req: Request, res: Response, next: NextFunctio
 const enrollCourse = async (req: Request, res: Response, next: NextFunction) => {
     const user = (req as any).user;
 
-    // const result = await SemesterRegistrationService.enrollToCourse(user.userId, req.body);
-
-    // sendResponse(
-    //     res, {
-    //     success: true,
-    //     statusCode: httpStatus.OK,
-    //     message: "Course enrolled successfully",
-    //     data: result
-    // })
-
     try {
-
+        const result = await SemesterRegistrationService.enrollCourse(req);
+        sendResponse(res, result)
     } catch (err) {
         next(err)
     }
@@ -103,20 +93,9 @@ const enrollCourse = async (req: Request, res: Response, next: NextFunction) => 
 
 
 const withdrawCourse = async (req: Request, res: Response, next: NextFunction) => {
-    // const user = (req as any).user;
-
-    // const result = await SemesterRegistrationService.withdrawCourse(user.userId, req.body);
-
-    // sendResponse(
-    //     res, {
-    //     success: true,
-    //     statusCode: httpStatus.OK,
-    //     message: "Course withdrawn successfully",
-    //     data: result
-    // })
-
     try {
-
+        const result = await SemesterRegistrationService.withdrawCourse(req);
+        sendResponse(res, result)
     } catch (err) {
         next(err)
     }
@@ -125,21 +104,9 @@ const withdrawCourse = async (req: Request, res: Response, next: NextFunction) =
 
 
 const confirmMyRegistration = async (req: Request, res: Response, next: NextFunction) => {
-    // const user = (req as any).user;
-
-    // const result = await SemesterRegistrationService.confirmMyRegistration(user?.userId);
-
-    // sendResponse(
-    //     res, {
-    //     success: true,
-    //     statusCode: httpStatus.OK,
-    //     message: "Registration confirmed successfully",
-    //     data: result
-    // })
-
-
     try {
-
+        const result = await SemesterRegistrationService.confirmMyRegistration(req);
+        sendResponse(res, result)
     } catch (err) {
         next(err)
     }

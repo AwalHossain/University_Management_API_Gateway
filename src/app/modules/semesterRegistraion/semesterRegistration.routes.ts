@@ -33,16 +33,31 @@ router.delete('/:id',
 
 
 
-// router.get(
-//     '/:id',
-//     BuildingController.getById
-// );
+router.post(
+    '/start-my-registration',
+    auth(ENUM_USER_ROLE.STUDENT),
+    SemesterRegistrationController.startMyRegistraion
+)
 
-// router.delete(
-//     '/:id',
-//     auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
-//     BuildingController.deleteById
-// );
+router.post(
+    '/enroll-course',
+    auth(ENUM_USER_ROLE.STUDENT),
+    // validateRequest(SemesterRegistrationValidation.enrollOrWithdrawCourse),
+    SemesterRegistrationController.enrollCourse
+)
+
+router.post(
+    '/withdraw-course',
+    auth(ENUM_USER_ROLE.STUDENT),
+    // validateRequest(SemesterRegistrationValidation.enrollOrWithdrawCourse),
+    SemesterRegistrationController.withdrawCourse
+)
+
+router.post('/confirm-my-registration',
+
+    auth(ENUM_USER_ROLE.STUDENT),
+    SemesterRegistrationController.confirmMyRegistration
+)
 
 
 export const SemesterRegistrationRoutes = router;
