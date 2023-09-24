@@ -115,20 +115,10 @@ const confirmMyRegistration = async (req: Request, res: Response, next: NextFunc
 
 
 const getMyRegistration = async (req: Request, res: Response, next: NextFunction) => {
-    // const user = (req as any).user;
-    // const result = await SemesterRegistrationService.getMyRegistration(user?.userId);
-
-    // sendResponse(
-    //     res, {
-    //     success: true,
-    //     statusCode: httpStatus.OK,
-    //     message: "Registration fetched = successfully",
-    //     data: result
-    // })
-
 
     try {
-
+        const result = await SemesterRegistrationService.getMyRegistration(req);
+        sendResponse(res, result)
     } catch (err) {
         next(err)
     }
@@ -139,7 +129,6 @@ const startNewSemester = async (req: Request, res: Response, next: NextFunction)
 
     // const { id } = req.params;
 
-    // const result = await SemesterRegistrationService.startNewSemester(id);
 
     // sendResponse(
     //     res, {
@@ -151,7 +140,8 @@ const startNewSemester = async (req: Request, res: Response, next: NextFunction)
 
 
     try {
-
+        const result = await SemesterRegistrationService.startNewSemester(req);
+        sendResponse(res, result)
     } catch (err) {
         next(err)
     }
@@ -161,7 +151,6 @@ const startNewSemester = async (req: Request, res: Response, next: NextFunction)
 const getMySemesterRegCourse = async (req: Request, res: Response, next: NextFunction) => {
     // const user = (req as any).user;
 
-    // const result = await SemesterRegistrationService.getMySemesterRegCourse(user?.userId);
     // console.log(result, 'result');
 
     // sendResponse(
@@ -173,7 +162,8 @@ const getMySemesterRegCourse = async (req: Request, res: Response, next: NextFun
     // })
 
     try {
-
+        const result = await SemesterRegistrationService.getMySemesterRegCourse(req);
+        sendResponse(res, result)
     } catch (err) {
         next(err)
     }

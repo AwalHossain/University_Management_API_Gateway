@@ -123,6 +123,37 @@ const confirmMyRegistration = async (req: Request) => {
 
 }
 
+const getMyRegistration = async (req: Request) => {
+    const response: IGenericResponse = await CoreService.get('semester-registration/get-my-registration', {
+        headers: {
+            'Authorization': req.headers.authorization
+        }
+    });
+    return response;
+}
+
+
+const startNewSemester = async (req: Request) => {
+    const { id } = req.params;
+    const response: IGenericResponse = await CoreService.get(`semester-registration/${id}/start-new-semester`, {
+        headers: {
+            'Authorization': req.headers.authorization
+        }
+    });
+    return response;
+}
+
+
+const getMySemesterRegCourse = async (req: Request) => {
+
+    const response: IGenericResponse = await CoreService.get(`semester-registration/semester-reg-course`, {
+        headers: {
+            'Authorization': req.headers.authorization
+        }
+    });
+    return response;
+
+}
 
 
 export const SemesterRegistrationService = {
@@ -134,5 +165,8 @@ export const SemesterRegistrationService = {
     startMyRegistraion,
     enrollCourse,
     withdrawCourse,
-    confirmMyRegistration
+    confirmMyRegistration,
+    getMyRegistration,
+    getMySemesterRegCourse,
+    startNewSemester,
 }
