@@ -2,7 +2,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express, { Application } from 'express';
 import httpStatus from 'http-status';
-import globalExceptionHandler from './app/middlewares/globalExceptionHandler';
+import globalErrorHandler from './app/middlewares/globalExceptionHandler';
 import routes from './app/routes';
 
 const app: Application = express();
@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
   res.send("Server started Successfully")
 })
 
-app.use(globalExceptionHandler);
+app.use(globalErrorHandler);
 
 app.use((req, res, next) => {
   res.status(httpStatus.NOT_FOUND).json({

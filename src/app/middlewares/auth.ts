@@ -1,35 +1,35 @@
-import { NextFunction, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import httpStatus from 'http-status';
 import ApiError from '../../errors/apiError';
 import { JwtHelper } from '../../helpers/jwtHelper';
-import { IAuthUser } from '../../interfaces/auth';
 
 const auth =
   (...requiredRoles: string[]) =>
-    async (req: any, res: Response, next: NextFunction) => {
-      return new Promise(async (resolve, reject) => {
+    async (req: Request, res: Response, next: NextFunction) => {
+      try {
+        //get authorization token
+        console.log(req.headers, 'verifiedUser');
         const token = req.headers.authorization;
-
         if (!token) {
-          return reject(new ApiError(httpStatus.UNAUTHORIZED, 'Unauthorized'));
+          throw new ApiError(httpStatus.UNAUTHORIZED, 'You are not authorized');
         }
+        // verify token
+        let verifiedUser = null;
 
-        const verifiedUser: IAuthUser = JwtHelper.verifyToken(token);
+        verifiedUser = JwtHelper.verifyToken(token);
+        console.log(verifiedUser, 'verifiedUser');
 
         if (!verifiedUser) {
-          return reject(new ApiError(httpStatus.UNAUTHORIZED, 'Unauthorized'));
+          throw new ApiError(httpStatus.UNAUTHORIZED, 'You are not authorized');
         }
-
-        req.user = verifiedUser;
-
+        // role diye guard korar jnno
         if (requiredRoles.length && !requiredRoles.includes(verifiedUser.role)) {
-          return reject(new ApiError(httpStatus.FORBIDDEN, 'Forbidden'));
+          throw new ApiError(httpStatus.FORBIDDEN, 'Forbidden');
         }
-
-        resolve(verifiedUser);
-      })
-        .then(() => next())
-        .catch((err) => next(err));
+        next();
+      } catch (error) {
+        next(error);
+      }
     };
 
 export default auth;
