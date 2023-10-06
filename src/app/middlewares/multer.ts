@@ -9,10 +9,7 @@ let storage = multer.diskStorage({
         cb(null, './uploads')
     },
     filename: (req: Request, file: Express.Multer.File, cb: Function) => {
-        // with multer ts types
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-        const fileExt = file.originalname.split('.').pop(); // get the file extension
-        cb(null, file.fieldname + '-' + uniqueSuffix + '.' + fileExt); // add the file extension to the file name
+        cb(null, file.originalname)
     }
 })
 
@@ -30,7 +27,7 @@ const fileFilter = (req: Request, file: Express.Multer.File, cb: Function) => {
     }
 }
 
-const upload = multer({ storage: storage, fileFilter: fileFilter }).single('image');
+const upload = multer({ storage: storage, fileFilter: fileFilter }).single('file');
 
 
 const uploadMiddleware = (req: Request, res: Response, next: NextFunction) => {
