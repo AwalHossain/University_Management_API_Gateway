@@ -4,7 +4,7 @@ import { AuthService } from '../../../shared/axios';
 
 const insertIntoDB = async (req: Request): Promise<IGenericResponse> => {
     const response: IGenericResponse = await AuthService.post(
-        `/management-departments/create-department`,
+        `/management-departments`,
         req.body,
         {
             headers: {
