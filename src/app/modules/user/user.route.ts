@@ -18,6 +18,12 @@ router.post(
     auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
     UserController.createFaculty
 );
+router.post(
+    '/create-admin',
+    uploadMiddleware,
+    auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+    UserController.createAdmin
+);
 
 
 export const userRoutes = router;
